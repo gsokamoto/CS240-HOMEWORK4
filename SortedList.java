@@ -6,6 +6,7 @@ public class SortedList<T extends Comparable<? super T>> extends DLList<T>  impl
 		DLNode<T> tempNode = getHead();
 		DLNode<T> node = new DLNode<T>();
 		node.setEntry(newEntry);
+		//if the list is empty adds a new entry
 		if(tempNode == null)
 		{
 			super.add(newEntry);
@@ -14,8 +15,10 @@ public class SortedList<T extends Comparable<? super T>> extends DLList<T>  impl
 		{
 			while(tempNode != null)
 			{
+				//checks if first entry is bigger than second entry
 				if(tempNode.getEntry().compareTo(node.getEntry()) <= 0)
 				{
+					//adds to the head
 					if(tempNode.getPrev() == null)
 					{
 						node.setNext(tempNode);
@@ -24,6 +27,7 @@ public class SortedList<T extends Comparable<? super T>> extends DLList<T>  impl
 						setHead(node);
 						break;
 					}
+					//adds to anywhere else
 					else
 					{
 						node.setNext(tempNode);
@@ -33,12 +37,13 @@ public class SortedList<T extends Comparable<? super T>> extends DLList<T>  impl
 						break;
 					}	
 				}
+				//moves to next node
 				else
 				{
 					tempNode = tempNode.getNext();
 				}
-				
 			}
+			//adds node to the front if its the smallest entry
 			if(tempNode == null)
 			{
 				tempNode = getTail();
@@ -47,7 +52,6 @@ public class SortedList<T extends Comparable<? super T>> extends DLList<T>  impl
 				tempNode.setNext(node);
 				setTail(node);
 			}
-			
 			setSize(getSize() + 1);
 		}
 	}
