@@ -29,7 +29,7 @@ public class SLList<T> implements ListInterface<T>
 		SLNode<T> tempNode2 = head;
 		SLNode<T> node = new SLNode<T>();
 		node.setEntry(newEntry);
-		
+		//adds node to the front if position is 1
 		if(position == 1)
 		{
 			while(tempNode.getNext() != null)
@@ -39,6 +39,7 @@ public class SLList<T> implements ListInterface<T>
 			tempNode.setNext(node);
 			node.setNext(null);
 		}
+		//adds node to position other than 1
 		else
 		{
 			while(position < size)
@@ -53,7 +54,7 @@ public class SLList<T> implements ListInterface<T>
 		}
 		size++;
 	}
-
+	
 	public T remove(int position)
 	{
 		if(isEmpty())
@@ -67,11 +68,13 @@ public class SLList<T> implements ListInterface<T>
 		SLNode<T> tempNode = head;
 		SLNode<T> tempNode2 = head;
 		T tempEntry;
+		//adds node to the end
 		if(position == size)
 		{
 			tempEntry = head.getEntry();
 			head = head.getNext();
 		}
+		//adds node to anywhere else but the end
 		else
 		{
 			while(position + 1 < size)
@@ -99,6 +102,7 @@ public class SLList<T> implements ListInterface<T>
 			throw new IndexOutOfBounds("Error. Position is beyond the boundaries of input.");
 		}
 		T tempEntry;
+		//removes entry at specific location and adds a new one to that same location
 		if(position == size)
 		{
 			tempEntry = remove(position);
@@ -122,6 +126,7 @@ public class SLList<T> implements ListInterface<T>
 			throw new IndexOutOfBounds("Error. Position is beyond the boundaries of input.");
 		}
 		SLNode<T> tempNode = head;
+		//moves pointer to the node you want to view
 		while(position < size)
 		{
 			tempNode = tempNode.getNext();
@@ -137,6 +142,7 @@ public class SLList<T> implements ListInterface<T>
 			throw new EmptyListException("Error. The list is empty.");
 		}
 		SLNode<T> tempNode = head;
+		//checks everything but the first node
 		while(tempNode.getNext() != null)
 		{
 			if(tempNode.getEntry() == entry)
@@ -148,6 +154,7 @@ public class SLList<T> implements ListInterface<T>
 				tempNode = tempNode.getNext();
 			}
 		}
+		//checks the first node
 		if(tempNode.getNext() == null)
 		{
 			if(tempNode.getEntry() == entry)
